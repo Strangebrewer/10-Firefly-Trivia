@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Trivia Game</title>
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Niconne" rel="stylesheet">
+</head>
+
+<body>
+  <header class="clearfix">
+    <div class="header">
+      <h2>Burn the land and boil the sea...&nbsp; you can't take the sky from me...</h2>
+    </div>
+    <div class="sub-header">
+      <div class="game-title">
+        <img src="assets/images/Firefly_logo.png" alt="">
+        <h1>&nbsp; Trivia Game</h1>
+
+        <p class="hidden-start" id="time-remaining">Time Remaining:&nbsp;
+          <span id="time-count"></span>&nbsp;seconds</p>
+        <div class="answers">
+
+        </div>
+      </div>
+  </header>
+
+  <div class="big-container">
+
+    <button id="start-btn">Start!</button>
+
+    <div class="hidden-start" id="quiz-container">
+      <div class="grid question">
+
+        <p id="question"></p>
+
+        <div id="answers">
+          <div class="btn-container-a">
+            <div class="quiz-btn" value="" id="btn-one"></div>
+          </div>
+
+          <div class="btn-container">
+            <div class="quiz-btn" value="" id="btn-two"></div>
+          </div>
+
+          <div class="btn-container-a">
+            <div class="quiz-btn" value="" id="btn-three"></div>
+          </div>
+
+          <div class="btn-container">
+            <div class="quiz-btn" value="" id="btn-four"></div>
+          </div>
+        </div>
+        <div class="hidden-start" id="question-expire">
+          <h2 id="times-up"></h2>
+          <h2 id="correct"></h2>
+          <h2 id="incorrect"></h2>
+          <p id="reveal"></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hidden-start" id="stat-container">
+      <h3 id="quiz-over">All Done!</h3>
+      <h4 id="correct-answers"></h4>
+      <h4 id="incorrect-answers"></h4>
+      <h4 id="unanswered"></h4>
+      <button id="start-over-btn">Play Again?</button>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&#9400;Copyright 2018 Keith Allmon</p>
+    <div class="answers">
+  </footer>
+
+  <script src="assets/js/jquery-3.3.1.js"></script>
+  <script src="assets/js/questions.js"></script>
+</body>
+
+</html>
