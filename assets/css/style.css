@@ -128,18 +128,29 @@ h1 {
 }
 
 .quiz-btn {
+  background: transparent;
+  border: none;
+  color: #cecece;
   float: left;
+  font-family: 'Cabin Sketch', Arial, Helvetica, sans-serif;
+  font-size: 22px;
   margin: 20px;
-  text-shadow: 0 5px 5px #666;
+  outline: none;
+  padding: 5px 10px;
+  text-shadow: 0 5px 5px #888;
 }
 
 .quiz-btn:hover {
   cursor: pointer;
+  color : #fff;
 }
 
 .quiz-btn:active {
+  border: none;
+  color : #fff;
   cursor: pointer;
-  text-shadow: 0 2px 5px #666;
+  outline: none;
+  text-shadow: 0 2px 5px #888;
   transform: translateY(3px);
 }
 
@@ -196,7 +207,6 @@ h1 {
 #stat-container {
   display: none;
   margin-top: 100px;
-  opacity: 0;
 }
 
 h3, h4 {
@@ -253,19 +263,4 @@ footer {
   padding: 20px;
   text-align: center;
   text-shadow: 0 0 30px #ff6e0d;
-}
-
-@keyframes fadeout {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes fadeout2 {
-  0% { opacity: 1; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
-}
-@keyframes fadein {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
 }

@@ -1,9 +1,50 @@
 $(window).ready(function () {
 
-  document.getElementById("start-btn").addEventListener("click", quiz.startQuiz);
+  $("#start-btn").on("click", quiz.startQuiz);
+
+  $(".quiz-btn").on("click", function () {
+    if (buttonFlag) {
+      buttonFlag = false;
+      clearTimeout(quizTimeout);
+      clearInterval(quizInterval);
+      $("#answers").fadeOut();
+      $("#reveal").html("The correct answer is: " + questions[questionIndex].answer);
+      showTimeout = setTimeout(quiz.showAnswer, 3000);
+      if ($(this).attr("value") === "true") {
+        setTimeout(function () {
+          $("#correct-incorrect").html("Right!");
+          $("#question-expire").fadeIn(1000);
+          correctAnswers++;
+        }, 400);
+      } else if ($(this).attr("value") === "false") {
+        setTimeout(function () {
+          $("#correct-incorrect").html("Wrong!");
+          $("#question-expire").fadeIn(1000);
+          incorrectAnswers++;
+        }, 400);
+
+      }
+    }
+  });
+
+  $("#start-over-btn").on("click", function () {
+    if (startOverButtonFlag === true) {
+      startOverButtonFlag = false;
+      correctAnswers = 0;
+      incorrectAnswers = 0;
+      unansweredQuestions = 0;
+      buttonFlag = true;
+      startButtonFlag = true;
+      usedQuestions.length = 0;
+      $("#stat-container").fadeOut();
+      setTimeout(function () {
+        $(".hidden-start").css("display", "none");
+      }, 400);
+      quiz.nextQuestion();
+    }
+  });
 
 });
-
 
 var questions = [
   {
@@ -125,34 +166,40 @@ var questions = [
   }
 ]
 
-// maybe run a for loop through the inputs each time to change the value to true or false depending on which one is the correct answer...
-
-// Move the below into the app.js scriptvar correctAnswers = 0;
+var correctAnswers = 0;
 var incorrectAnswers = 0;
 var unansweredQuestions;
 var totalQuestions = 13;
 var questionIndex;
 var usedQuestions = [];
-var rightAnswer;
-// maybe variables
-var questionId;
 var timeRemaining;
 var quizTimeout;
 var quizInterval;
 var showTimeout;
-var prevQuestion;
 var buttonFlag = true;
+var startButtonFlag = true;
+var startOverButtonFlag = true;
+
+
 
 var quiz = {
 
-  // first, a button click to load the question & answers
-  //  then run setQuestionIndex and setValue
-  //  then a fade in
+  startQuiz: function () {
+    if (startButtonFlag === true) {
+      startButtonFlag = false;
+      $("#start-btn").fadeOut();
+      quiz.nextQuestion();
+    }
+  }
 
-  setQuestionIndex: function () {
+  , setQuestionIndex: function () {
     questionIndex = Math.floor(Math.random() * questions.length);
+  }
+
+  , checkQuestionIndex: function () {
     if (usedQuestions.includes(questionIndex)) {
       quiz.setQuestionIndex();
+      quiz.checkQuestionIndex();
     } else {
       usedQuestions.push(questionIndex);
     }
@@ -160,24 +207,16 @@ var quiz = {
 
   , setValue: function () {
     var buttons = document.getElementsByClassName("quiz-btn");
-    rightAnswer = parseInt(questions[questionIndex].answerIndex);
+    var rightAnswer = parseInt(questions[questionIndex].answerIndex);
     for (i = 0; i < buttons.length; i++) {
       if (i === rightAnswer) {
         $(buttons[i]).attr("value", "true");
-        console.log(i);
-        console.log($(buttons[i]).attr("value"));
       }
       else {
         $(buttons[i]).attr("value", "false");
-        console.log($(buttons[i]).attr("value"));
       }
 
     }
-  }
-
-  , startQuiz: function () {
-    $("#start-btn").fadeOut(1000);
-    quiz.nextQuestion();
   }
 
   , setQuestion: function () {
@@ -192,32 +231,18 @@ var quiz = {
 
   , nextQuestion: function () {
     quiz.setQuestionIndex();
-    usedQuestions.push(questionIndex);
+    quiz.checkQuestionIndex();
     quiz.setValue();
-    timeRemaining = 26;
+    timeRemaining = 16;
     quizInterval = setInterval(quiz.count, 1000);
-    quizTimeout = setTimeout(quiz.countDown, 26001);
+    buttonFlag = true;
+    quizTimeout = setTimeout(quiz.countDown, 16001);
     setTimeout(function () {
       quiz.setQuestion();
       $("#quiz-container").fadeIn(1001);
-      $("#time-remaining").fadeIn(2001);
+      $("#answers").fadeIn(401);
+      $("#time-remaining").fadeIn(1001);
     }, 1000);
-  }
-
-  , countDown: function () {
-    buttonFlag = false;
-    clearInterval(quizInterval);
-    $("#answers").fadeOut();
-    setTimeout(function () {
-      $("#times-up").html("Time's Up!");
-      $("#reveal").html("The correct answer is: " + questions[questionIndex].answer);
-      $("#question-expire").fadeIn(1000);
-    }, 1000);
-
-    // quiz.fadeOut(prevQuestion + "-answers");
-    // quiz.fadeIn(prevQuestion + "-times-up");
-    // quiz.fadeIn(prevQuestion + "-reveal");
-    // showTimeout = setTimeout(quiz.showAnswer, 4000);
   }
 
   , count: function () {
@@ -225,4 +250,36 @@ var quiz = {
     $("#time-count").html(timeRemaining);
   }
 
-}
+  , countDown: function () {
+    buttonFlag = false;
+    clearInterval(quizInterval);
+    $("#answers").fadeOut();
+    showTimeout = setTimeout(quiz.showAnswer, 3000);
+    setTimeout(function () {
+      $("#correct-incorrect").html("Time's Up!");
+      $("#reveal").html("The correct answer is: " + questions[questionIndex].answer);
+      $("#question-expire").fadeIn(1000);
+    }, 400);
+  }
+
+  , showAnswer: function () {
+    if (questions.length === usedQuestions.length) {
+      startOverButtonFlag = true;
+      $("#question-expire").fadeOut();
+      $("#quiz-container").fadeOut();
+      unansweredQuestions = totalQuestions - (correctAnswers + incorrectAnswers);
+      setTimeout(function () {
+        $("#correct-answers").html("Correct Answers: " + correctAnswers);
+        $("#incorrect-answers").html("Incorrect Answers: " + incorrectAnswers);
+        $("#unanswered").html("Unanswered: " + unansweredQuestions);
+        $("#stat-container").fadeIn(1000);
+      }, 400);
+    }
+    else {
+      $("#question-expire").fadeOut();
+      $("#quiz-container").fadeOut();
+      quiz.nextQuestion();
+    }
+  }
+
+};
