@@ -118,11 +118,11 @@ h1 {
 
 .btn-container {
   display: inline-block;
-  min-width: 260px;
+  min-width: 280px;
 }
 
 .btn-container-a {
-  min-width: 260px;
+  min-width: 280px;
   display: inline-block;
   margin-left: 100px;
 }
@@ -134,9 +134,8 @@ h1 {
   float: left;
   font-family: 'Cabin Sketch', Arial, Helvetica, sans-serif;
   font-size: 22px;
-  margin: 20px;
+  margin: 20px 0;
   outline: none;
-  padding: 5px 10px;
   text-shadow: 0 5px 5px #888;
 }
 
