@@ -2,12 +2,11 @@
   
 ## Table of contents
   
-### [1-Description](https://github.com/Strangebrewer/RepoName#Description)
-### [2-Technologies](https://github.com/Strangebrewer/RepoName#Technologies)
-### [3-Challenges](https://github.com/Strangebrewer/RepoName#Challenges)
-### [4-Issues](https://github.com/Strangebrewer/RepoName#Issues)
-### [5-Desired Features](https://github.com/Strangebrewer/RepoName#Desired-Features)
-### [6-Contributors](https://github.com/Strangebrewer/RepoName#Contributors)
+### [1-Description](https://github.com/Strangebrewer/10-Firefly-Trivia#Description)
+### [2-Technologies](https://github.com/Strangebrewer/10-Firefly-Trivia#Technologies)
+### [3-Challenges](https://github.com/Strangebrewer/10-Firefly-Trivia#Challenges)
+### [4-Future Development](https://github.com/Strangebrewer/10-Firefly-Trivia#Desired-Features)
+### [5-Contributors](https://github.com/Strangebrewer/10-Firefly-Trivia#Contributors)
 
 ### 1-Description
 A trivia game based on the TV show *Firefly* (tragically cancelled in its infancy) and the companion movie, *Serenity* (get it, companion? yes, roll your eyes, I know). This app is designed to demonstrate an understanding of intervals and timeouts in javascript. And I think the subject matter is pretty awesome, too.
