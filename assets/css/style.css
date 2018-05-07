@@ -76,7 +76,6 @@ h1 {
 }
 /* end header */
 
-
 .big-container {
   clear: both;
   flex: 1 0 auto;
@@ -87,11 +86,11 @@ h1 {
 #start-btn {
   background: transparent;
   border: none;
+  color: #ff812d;
   display: block;
   font-family: 'Niconne', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 2.5em;
   font-weight: bold;
-  color: #ff812d;
   margin: 100px auto 0 auto;
   text-shadow: 0 9px 5px #333;
   width: 137px;
@@ -116,14 +115,13 @@ h1 {
   padding: 20px 0;
 }
 
-.btn-container {
+.btn-container,
+.btn-container-a {
   display: inline-block;
   min-width: 280px;
 }
 
 .btn-container-a {
-  min-width: 280px;
-  display: inline-block;
   margin-left: 100px;
 }
 
@@ -140,8 +138,8 @@ h1 {
 }
 
 .quiz-btn:hover {
-  cursor: pointer;
   color : #fff;
+  cursor: pointer;
 }
 
 .quiz-btn:active {
@@ -160,8 +158,8 @@ h1 {
 #quiz-container {
   color: #cecece;
   margin: 10px auto 0 auto;
-  width: 900px;
   padding: 100px;
+  width: 900px;
 }
 
 #quiz-container p {
@@ -179,8 +177,8 @@ h1 {
   color: #c5c5c5;
   font-family: 'Niconne', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 1.4em;
-  z-index: 1;
   padding-top: 40px;
+  z-index: 1;
 }
 
 #time-count {
@@ -188,11 +186,11 @@ h1 {
   display: inline-block;
   font-family: 'Niconne', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 1.4em;
-  line-height: .8;
-  z-index: 1;
   height: 28px;
+  line-height: .8;
   text-align: center;
   width: 45px;
+  z-index: 1;
 }
 
 #question h2 {
@@ -204,7 +202,6 @@ h1 {
 }
 
 #stat-container {
-  display: none;
   margin-top: 100px;
 }
 
@@ -228,11 +225,11 @@ h4 {
 #start-over-btn {
   background: transparent;
   border: none;
+  color: #ff812d;
   font-family: 'Niconne', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 2.5em;
   font-weight: bold;
   margin-top: 50px;
-  color: #ff812d;
   text-shadow: 0 9px 5px #333;
 }
 
