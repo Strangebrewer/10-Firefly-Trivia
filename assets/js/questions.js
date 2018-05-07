@@ -1,7 +1,9 @@
 $(window).ready(function () {
 
+  //  to start the game
   $("#start-btn").on("click", quiz.startQuiz);
 
+  //  A class assigned to each answer for each question. Triggers the result, and then the next question
   $(".quiz-btn").on("click", function () {
     if (buttonFlag) {
       buttonFlag = false;
@@ -46,6 +48,7 @@ $(window).ready(function () {
 
 });
 
+//  Array of anonymous question objects
 var questions = [
   {
     question: "Who is the captain of Serenity?"
@@ -171,17 +174,22 @@ var incorrectAnswers = 0;
 var unansweredQuestions;
 var totalQuestions = 13;
 var questionIndex;
+
+//  Empty array to contain used question indices so the questions don't repeat
 var usedQuestions = [];
+
 var timeRemaining;
 var quizTimeout;
 var quizInterval;
 var showTimeout;
+
+//  flag variables to control timing
 var buttonFlag = true;
 var startButtonFlag = true;
 var startOverButtonFlag = true;
 
 
-
+// Quiz object
 var quiz = {
 
   startQuiz: function () {
@@ -192,10 +200,12 @@ var quiz = {
     }
   }
 
+  //  function to pick a random number from the questions array
   , setQuestionIndex: function () {
     questionIndex = Math.floor(Math.random() * questions.length);
   }
 
+  //  function to see if the chosen question index has already been used
   , checkQuestionIndex: function () {
     if (usedQuestions.includes(questionIndex)) {
       quiz.setQuestionIndex();
@@ -205,6 +215,7 @@ var quiz = {
     }
   }
 
+  //  set html value attribute for the dynamically generated answers
   , setValue: function () {
     var buttons = document.getElementsByClassName("quiz-btn");
     var rightAnswer = parseInt(questions[questionIndex].answerIndex);
@@ -219,6 +230,7 @@ var quiz = {
     }
   }
 
+  //  Get question and answers from questions array, display them, and set timer
   , setQuestion: function () {
     $("#question").html(questions[questionIndex].question);
     $("#btn-one").html(questions[questionIndex].btnOne);
@@ -229,6 +241,7 @@ var quiz = {
     $("#time-count").html(timeRemaining);
   }
 
+  // function to get the next question - runs the set and check functions to prevent repeat questions, resets the timer and intervals
   , nextQuestion: function () {
     quiz.setQuestionIndex();
     quiz.checkQuestionIndex();
@@ -244,12 +257,13 @@ var quiz = {
       $("#time-remaining").fadeIn(1001);
     }, 1000);
   }
-
+  // Count function to be used to set an interval on the timer. Each interval decrements the timeRemaining variable, which shows in the timer display
   , count: function () {
     timeRemaining--;
     $("#time-count").html(timeRemaining);
   }
 
+  // Countdown function to be used to fade out the question and call the showAnswer function on a timer
   , countDown: function () {
     buttonFlag = false;
     clearInterval(quizInterval);
@@ -262,6 +276,7 @@ var quiz = {
     }, 400);
   }
 
+  // If the question list is exhausted, tally answers and end the quiz; otherwise, go on to the next question.
   , showAnswer: function () {
     if (questions.length === usedQuestions.length) {
       startOverButtonFlag = true;
