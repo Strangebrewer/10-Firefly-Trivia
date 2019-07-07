@@ -1,4 +1,4 @@
-# 10-Firefly-Trivia
+# Firefly Trivia
   
 ## Table of contents
   
